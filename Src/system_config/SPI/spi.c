@@ -204,7 +204,8 @@ void spi_config(SPI_TypeDef *spi) {
 void spi_startCommunication(GPIO_TypeDef *cs_port, int cs_pin) {
 
 	gpio_low(cs_port, cs_pin);
-}void spi_stopCommunication(GPIO_TypeDef *cs_port, int cs_pin) {
+}
+void spi_stopCommunication(GPIO_TypeDef *cs_port, int cs_pin) {
 	gpio_high(cs_port, cs_pin);
 }
 

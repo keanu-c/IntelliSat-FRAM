@@ -16,9 +16,19 @@
 //Macros
 #if   OP_REV == 1
 #define IMU_I2C GPIOF, 1, GPIOF, 0
+
 #elif OP_REV == 2
 #define IMU_SPI    SPI3
 #define IMU_SPI_CS SPI3_CS
+
+#elif OP_REV == 3
+#define IMU_SPI    SPI3
+// define macros for imu 1 and 2
+//#define IMU1_SPI_CS <put pin macro here>
+//#define IMU2_SPI_CS <put pin macro here>
+#define IMU_1 1
+#define IMU_2 2
+
 #endif
 
 //Macros

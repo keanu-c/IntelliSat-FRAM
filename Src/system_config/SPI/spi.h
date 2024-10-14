@@ -34,6 +34,13 @@
 #define SPI2_CS			  UNUSED_GPIO
 #define SPI3_CS			  GPIOG,15
 
+for OP_REV == 3
+// #elif OP_REV == 3
+// #define SPI1_CS        GPIO... 
+// #define SPI2_CS        GPIO...
+// #define SPI3_CS        GPIO...
+// 
+
 #endif
 
 #define SPI_DUMMY_BYTE 0xAA

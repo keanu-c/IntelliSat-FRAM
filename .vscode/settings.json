@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "testdefinition.h": "c",
+        "inttypes.h": "c",
+        "globals.h": "c",
+        "print_scan.h": "c",
+        "qspi.h": "c",
+        "spi.h": "c"
+    }
+}

@@ -34,13 +34,23 @@ void spi3_gpioInit() {
 	 * 		SPI3 NCS		G15		(Output)
 	 */
 	// Reset mode on each SPI-3 pin
-	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOBEN;
+	 RCC->AHB2ENR |= RCC_AHB2ENR_GPIOBEN;
 	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOGEN;
 
-	while (GPIOB->OTYPER == 0xFFFFFFFF);
-	while (GPIOG->OTYPER == 0xFFFFFFFF);
+	 while (GPIOB->OTYPER == 0xFFFFFFFF);
+	 while (GPIOG->OTYPER == 0xFFFFFFFF);
 
 	GPIOG->PUPDR |= GPIO_PUPDR_PUPD15_0;
+
+	GPIOB->PUPDR &= ~(
+      GPIO_PUPDR_PUPD3_Msk
+    | GPIO_PUPDR_PUPD4_Msk
+    | GPIO_PUPDR_PUPD5_Msk);  // Clear current state
+
+	GPIOB->PUPDR |=
+	      GPIO_PUPDR_PUPD3_1// Set pull-down for B3 (CLK)
+	    | GPIO_PUPDR_PUPD4_1  // Set pull-down for B4 (MISO)
+	    | GPIO_PUPDR_PUPD5_1; // Set pull-down for B5 (MOSI)
 
 	GPIOB->MODER &= ~(
 		  GPIO_MODER_MODE3_Msk
@@ -204,7 +214,8 @@ void spi_config(SPI_TypeDef *spi) {
 void spi_startCommunication(GPIO_TypeDef *cs_port, int cs_pin) {
 
 	gpio_low(cs_port, cs_pin);
-}void spi_stopCommunication(GPIO_TypeDef *cs_port, int cs_pin) {
+}
+void spi_stopCommunication(GPIO_TypeDef *cs_port, int cs_pin) {
 	gpio_high(cs_port, cs_pin);
 }
 

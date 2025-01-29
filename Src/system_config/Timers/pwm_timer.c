@@ -22,21 +22,21 @@ void pwm_timer_gpio() {
 #if OP_REV == 2 || OP_REV == 3
 
 	/* OP R2 GPIO pinout
-	 * 		TIM CH1		GPIO A15	AF - 1
+	 * 		TIM CH1		GPIO E9	AF - 1
 	 */
 
 	// Clock setup
-	RCC->AHB2ENR  |= RCC_AHB2ENR_GPIOAEN;
+	RCC->AHB2ENR  |= RCC_AHB2ENR_GPIOEEN;
 
 	// Reset pin state
-	GPIOA->MODER  &= ~GPIO_MODER_MODE15_Msk;
-	GPIOA->AFR[1] &= ~GPIO_AFRH_AFSEL15_Msk;
+	GPIOE->MODER  &= ~GPIO_MODER_MODE9_Msk;
+	GPIOE->AFR[1] &= ~GPIO_AFRH_AFSEL9_Msk;
 
 	// Set pin mode
-	GPIOA->MODER  |= (2U << GPIO_MODER_MODE15_Pos);
+	GPIOE->MODER  |= (2U << GPIO_MODER_MODE9_Pos);
 
 	// Set AF
-	GPIOA->AFR[1] |= (1U << GPIO_AFRH_AFSEL15_Pos);
+	GPIOE->AFR[1] |= (1U << GPIO_AFRH_AFSEL9_Pos);
 
 #elif OP_REV == 1
 
